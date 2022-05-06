@@ -1,5 +1,5 @@
 # final-project
-RUN THESE TWO LINES IN THE TERMINAL
+RUN THESE LINES IN THE TERMINAL
 
 pip install cs50
 pip install flask
