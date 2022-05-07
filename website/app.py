@@ -131,6 +131,24 @@ def edit():
         user_id = session["user_id"]
         segments = db.execute("SELECT segment_type, location FROM segments WHERE user_id = ? ORDER BY location", user_id)
         return render_template("edit.html", segments=segments)
+    else:
+        # gets info from form
+        user_id = session["user_id"]
+        button_value = int(request.form['delete-button'])
+
+        # gets number of segments
+        segments_number = db.execute("SELECT segments_number FROM users WHERE user_id = ?", user_id)[0]['segments_number']
+
+        # deletes segment in question
+        db.execute("DELETE FROM segments WHERE user_id = ? AND location = ?", user_id, button_value)
+        db.execute("UPDATE users SET segments_number = ? WHERE user_id = ?", segments_number - 1, user_id)
+
+        # adjusts rest of segments in relation to segment to delete
+        for i in range (1, segments_number + 1):
+            if i > button_value:
+                db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", i - 1, i, user_id)
+
+        return redirect("/")
 
 @app.route("/edit-header", methods=["GET", "POST"])
 @login_required

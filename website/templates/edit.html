@@ -11,17 +11,19 @@
             <tr>
                 <th scope="col">Order</th>
                 <th scope="col">Type</th>
-                <th scope="col">Add/Delete</th>
+                <th scope="col">Delete</th>
             </tr>
         </thead>
         <tbody>
-            {% for segment in segments %}
-                <tr>
-                    <th scope="row">{{ segment["location"] }}</th>
-                    <td>{{ segment["segment_type"] }}</td>
-                    <td>Delete</td>
-                </tr>
-            {% endfor %}
+            <form action="/edit" method="post">
+                {% for segment in segments %}
+                    <tr>
+                        <th scope="row">{{ segment["location"] }}</th>
+                        <td>{{ segment["segment_type"] }}</td>
+                        <td><button class="btn btn-secondary" type="submit" name="delete-button" value="{{ segment["location"] }}">Delete</button></td>
+                    </tr>
+                {% endfor %}
+            </form>
         </tbody>
     </table>
 
