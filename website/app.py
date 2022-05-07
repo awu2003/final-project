@@ -134,21 +134,40 @@ def edit():
     else:
         # gets info from form
         user_id = session["user_id"]
-        button_value = int(request.form['delete-button'])
+        if request.form.get('delete-button'):
+            button_value = int(request.form['delete-button'])
 
-        # gets number of segments
-        segments_number = db.execute("SELECT segments_number FROM users WHERE user_id = ?", user_id)[0]['segments_number']
+            # gets number of segments
+            segments_number = db.execute("SELECT segments_number FROM users WHERE user_id = ?", user_id)[0]['segments_number']
 
-        # deletes segment in question
-        db.execute("DELETE FROM segments WHERE user_id = ? AND location = ?", user_id, button_value)
-        db.execute("UPDATE users SET segments_number = ? WHERE user_id = ?", segments_number - 1, user_id)
+            # deletes segment in question
+            db.execute("DELETE FROM segments WHERE user_id = ? AND location = ?", user_id, button_value)
+            db.execute("UPDATE users SET segments_number = ? WHERE user_id = ?", segments_number - 1, user_id)
 
-        # adjusts rest of segments in relation to segment to delete
-        for i in range (1, segments_number + 1):
-            if i > button_value:
-                db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", i - 1, i, user_id)
+            # adjusts rest of segments in relation to segment to delete
+            for i in range (1, segments_number + 1):
+                if i > button_value:
+                    db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", i - 1, i, user_id)
 
-        return redirect("/")
+            return redirect("/")
+        elif request.form.get('up-button'):
+            button_value = int(request.form['up-button'])
+
+            # swaps segments
+            db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", 100000, button_value, user_id)
+            db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", button_value, button_value - 1, user_id)
+            db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", button_value - 1, 100000, user_id)
+            
+            return redirect("/")
+        else:
+            button_value = int(request.form['down-button'])
+
+            # swaps segments
+            db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", 100000, button_value, user_id)
+            db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", button_value, button_value + 1, user_id)
+            db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", button_value + 1, 100000, user_id)
+            
+            return redirect("/")
 
 @app.route("/edit-header", methods=["GET", "POST"])
 @login_required

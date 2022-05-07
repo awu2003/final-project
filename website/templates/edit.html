@@ -12,6 +12,7 @@
                 <th scope="col">Order</th>
                 <th scope="col">Type</th>
                 <th scope="col">Delete</th>
+                <th scope="col">Move</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,14 @@
                         <th scope="row">{{ segment["location"] }}</th>
                         <td>{{ segment["segment_type"] }}</td>
                         <td><button class="btn btn-secondary" type="submit" name="delete-button" value="{{ segment["location"] }}">Delete</button></td>
+                        <td>
+                            {% if segment != segments[0] %}
+                                <button class="btn btn-secondary" type="submit" name="up-button" value="{{ segment["location"] }}">Move up</button>
+                            {% endif %}
+                            {% if segment != segments[-1] %}
+                                <button class="btn btn-secondary" type="submit" name="down-button" value="{{ segment["location"] }}">Move down</button>
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
             </form>
