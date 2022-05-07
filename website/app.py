@@ -117,13 +117,13 @@ def register():
     else:
         return render_template("register.html")
 
-@app.route("/edit", methods=["GET"])
+@app.route("/edit", methods=["GET", "POST"])
 @login_required
 def edit():
     """Hub for editing segments"""
     return render_template("edit.html")
 
-@app.route("/about", methods=["GET"])
+@app.route("/about", methods=["POST"])
 @login_required
 def about():
     """A little more about this project!"""
