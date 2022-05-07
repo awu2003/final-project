@@ -38,6 +38,11 @@ CREATE TABLE users (
     <br>
     {{ segments[1]["segment_type"] }}
 
+USERS
+
+Alice, 1234
+Amy, 123
+
 # final-project
 RUN THESE TWO LINES IN THE TERMINAL
 

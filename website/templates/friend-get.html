@@ -1,13 +1,12 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Home
+    Friend get
 {% endblock %}
 
 {% block main %}
     {{segments}}
     <br>
-
     {% for segment in segments %}
         {% if segment["segment_type"] == "header" %}
         {% elif segment["segment_type"] == "paragraph" %}

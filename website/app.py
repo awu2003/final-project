@@ -248,6 +248,25 @@ def edit_image():
 
         return redirect("/")
 
+@app.route("/friend-lookup", methods=["GET", "POST"])
+@login_required
+def friend_lookup():
+    """Look up friend's website"""
+    if request.method == "GET":
+        return render_template("friend-lookup.html")
+    else:
+        # makes sure username exists
+        friend_user = request.form.get("friend-lookup")
+        if friend_user == "":
+            return apology("must enter text")
+        if len(db.execute("SELECT username FROM users WHERE username = ?", friend_user)) == 0:
+            return apology("username does not exist")
+        
+        # select friend's segments
+        segments = db.execute("SELECT segment_type, content FROM segments WHERE user_id = (SELECT user_id FROM users WHERE username = ?) ORDER BY location",
+                               friend_user)
+        return render_template("friend-get.html", segments=segments)
+
 @app.route("/about", methods=["GET"])
 @login_required
 def about():
