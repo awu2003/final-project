@@ -22,3 +22,17 @@ nav .navbar-brand .green
     color: #2e944b;
 }
 
+.button {
+    display: inline-block;
+    width: 30%;
+    height: 250px;
+    border: none;
+    background-color: #8bc7e8;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 30px;
+  }
