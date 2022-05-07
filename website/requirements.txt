@@ -34,6 +34,10 @@ CREATE TABLE users (
     segments_number INTEGER NOT NULL DEFAULT 0
 );
 
+    {{segments}}
+    <br>
+    {{ segments[1]["segment_type"] }}
+
 # final-project
 RUN THESE TWO LINES IN THE TERMINAL
 

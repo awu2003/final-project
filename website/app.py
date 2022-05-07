@@ -128,7 +128,9 @@ def register():
 def edit():
     """Hub for editing segments"""
     if request.method == "GET":
-        return render_template("edit.html")
+        user_id = session["user_id"]
+        segments = db.execute("SELECT segment_type, location FROM segments WHERE user_id = ? ORDER BY location", user_id)
+        return render_template("edit.html", segments=segments)
 
 @app.route("/edit-header", methods=["GET", "POST"])
 @login_required

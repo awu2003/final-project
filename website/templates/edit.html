@@ -8,28 +8,20 @@
 <main class="container py-5 text-center">
     <table class="table">
         <thead>
-        <tr>
-            <th scope="col">Order</th>
-            <th scope="col">Type</th>
-            <th scope="col">Add/Delete</th>
-        </tr>
+            <tr>
+                <th scope="col">Order</th>
+                <th scope="col">Type</th>
+                <th scope="col">Add/Delete</th>
+            </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Text</td>
-            <td>Delete</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Header</td>
-            <td>Delete</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Image</td>
-            <td>Delete</td>
-        </tr>
+            {% for segment in segments %}
+                <tr>
+                    <th scope="row">{{ segment["location"] }}</th>
+                    <td>{{ segment["segment_type"] }}</td>
+                    <td>Delete</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 
