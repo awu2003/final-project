@@ -25,9 +25,13 @@
                         <td>
                             {% if segment != segments[0] %}
                                 <button class="btn btn-secondary" type="submit" name="up-button" value="{{ segment["location"] }}">Move up</button>
+                            {% else %}
+                                <button class="btn btn-secondary" disabled>Move up</button>
                             {% endif %}
                             {% if segment != segments[-1] %}
                                 <button class="btn btn-secondary" type="submit" name="down-button" value="{{ segment["location"] }}">Move down</button>
+                            {% else %}
+                                <button class="btn btn-secondary" disabled>Move down</button>
                             {% endif %}
                         </td>
                     </tr>
