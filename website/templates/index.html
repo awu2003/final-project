@@ -5,5 +5,12 @@
 {% endblock %}
 
 {% block main %}
-    Hello!
+    {% for segment in segments %}
+        {% if segment["segment_type"] == "header" %}
+        {% elif segment["segment_type"] == "paragraph" %}
+        {% elif segment["segment_type"] == "image" %}
+        {% elif segment["segment_type"] == "video" %}
+        {% elif segment["segment_type"] == "spotify" %}
+        {% endif %}
+    {% endfor %}
 {% endblock %}
