@@ -131,7 +131,7 @@ def edit_header():
         user_id = session["user_id"]
         # gets segment number to do conditional rendering on the html
         segments_number = db.execute("SELECT segments_number FROM users WHERE user_id = ?", user_id)[0]['segments_number']
-        return render_template("edit-header.html")
+        return render_template("edit-header.html", segments_number = segments_number)
     else:
         # get text from form
         header_text = request.form.get("header-text")
@@ -160,7 +160,7 @@ def edit_paragraph():
         user_id = session["user_id"]
         # gets segment number to do conditional rendering on the html
         segments_number = db.execute("SELECT segments_number FROM users WHERE user_id = ?", user_id)[0]['segments_number']
-        return render_template("edit-paragraph.html")
+        return render_template("edit-paragraph.html", segments_number = segments_number)
     else:
         # get text from form
         paragraph_text = request.form.get("paragraph-text")
@@ -190,7 +190,7 @@ def edit_image():
         user_id = session["user_id"]
         # gets segment number to do conditional rendering on the html
         segments_number = db.execute("SELECT segments_number FROM users WHERE user_id = ?", user_id)[0]['segments_number']
-        return render_template("edit-image.html")
+        return render_template("edit-image.html", segments_number = segments_number)
     else:
         # get text from form
         image_url = request.form.get("image-url")

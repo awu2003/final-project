@@ -8,10 +8,16 @@
     <div class="mb-3">
         <h1>Paragraph editor</h1>
     </div>
-    <form action="/edit-paragraph" method="post">
+    {% if segments_number >= 5 %}
         <div class="mb-3">
-            <textarea autocomplete="off" autofocus class="form-control mx-auto w-auto" id="paragraph-text" name="paragraph-text" placeholder="Enter your text here!" type="text"></textarea>
+            <p>You have the maximum amount of segments! Go delete some :)</p>
         </div>
-        <button class="btn btn-primary" type="submit">Add paragraph!</button>
-    </form>
+    {% else %}
+        <form action="/edit-paragraph" method="post">
+            <div class="mb-3">
+                <textarea autocomplete="off" autofocus class="form-control mx-auto w-auto" id="paragraph-text" name="paragraph-text" placeholder="Enter your text here!" type="text"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Add paragraph!</button>
+        </form>
+    {% endif %}
 {% endblock %}

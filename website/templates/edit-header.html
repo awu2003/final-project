@@ -8,10 +8,16 @@
     <div class="mb-3">
         <h1>Header editor</h1>
     </div>
-    <form action="/edit-header" method="post">
+    {% if segments_number >= 5 %}
         <div class="mb-3">
-            <textarea autocomplete="off" autofocus class="form-control mx-auto w-auto" id="header-text" name="header-text" placeholder="Enter your header here!" type="text"></textarea>
+            <p>You have the maximum amount of segments! Go delete some :)</p>
         </div>
-        <button class="btn btn-primary" type="submit">Add header!</button>
-    </form>
+    {% else %}
+        <form action="/edit-header" method="post">
+            <div class="mb-3">
+                <textarea autocomplete="off" autofocus class="form-control mx-auto w-auto" id="header-text" name="header-text" placeholder="Enter your header here!" type="text"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Add header!</button>
+        </form>
+    {% endif %}
 {% endblock %}
