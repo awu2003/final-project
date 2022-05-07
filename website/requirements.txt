@@ -4,12 +4,13 @@ CREATE TABLE segments (
     segment_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     user_id INTEGER NOT NULL,
     segment_type TEXT NOT NULL,
+    content TEXT NOT NULL,
     location INTEGER NOT NULL,
     FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
 
-CREATE TABLE heading (
-    heading_text TEXT NOT NULL,
+CREATE TABLE header (
+    header_text TEXT NOT NULL,
     segment_id INTEGER NOT NULL,
     FOREIGN KEY(segment_id) REFERENCES segments(segment_id)
 );

@@ -37,7 +37,13 @@ def after_request(response):
 @app.route("/")
 @login_required
 def index():
-    return render_template("index.html")
+    """Shows user's website!"""
+    user_id = session["user_id"]
+
+    # Select all segments belonging to a user
+    segments = db.execute("SELECT segment_type, content FROM segments WHERE user_id = ? ORDER BY location", user_id)
+
+    return render_template("index.html", segments = segments)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -145,12 +151,9 @@ def edit_header():
         db.execute("UPDATE users SET segments_number = ? WHERE user_id = ?", segments_number + 1, user_id)
         
         # add segment to segments table
-        db.execute("INSERT INTO segments (user_id, segment_type, location) VALUES (?, ?, ?)",
-                   user_id, "header", segments_number + 1)
-        # add segment to header table
-        segment_id = db.execute("SELECT segment_id FROM segments WHERE user_id = ? AND location = ?", user_id, segments_number + 1)[0]['segment_id']
-        db.execute("INSERT INTO header (header_text, segment_id) VALUES (?, ?)",
-                   header_text, segment_id)
+        db.execute("INSERT INTO segments (user_id, segment_type, content, location) VALUES (?, ?, ?, ?)",
+                   user_id, "header", header_text, segments_number + 1)
+
         return redirect("/")
 
 @app.route("/edit-paragraph", methods=["GET", "POST"])
@@ -174,12 +177,9 @@ def edit_paragraph():
         db.execute("UPDATE users SET segments_number = ? WHERE user_id = ?", segments_number + 1, user_id)
         
         # add segment to segments table
-        db.execute("INSERT INTO segments (user_id, segment_type, location) VALUES (?, ?, ?)",
-                   user_id, "paragraph", segments_number + 1)
-        # add segment to paragraph table
-        segment_id = db.execute("SELECT segment_id FROM segments WHERE user_id = ? AND location = ?", user_id, segments_number + 1)[0]['segment_id']
-        db.execute("INSERT INTO paragraph (paragraph_text, segment_id) VALUES (?, ?)",
-                   paragraph_text, segment_id)
+        db.execute("INSERT INTO segments (user_id, segment_type, content, location) VALUES (?, ?, ?, ?)",
+                   user_id, "paragraph", paragraph_text, segments_number + 1)
+
         return redirect("/")
 
 
@@ -204,12 +204,9 @@ def edit_image():
         db.execute("UPDATE users SET segments_number = ? WHERE user_id = ?", segments_number + 1, user_id)
         
         # add segment to segments table
-        db.execute("INSERT INTO segments (user_id, segment_type, location) VALUES (?, ?, ?)",
-                   user_id, "image", segments_number + 1)
-        # add segment to image table
-        segment_id = db.execute("SELECT segment_id FROM segments WHERE user_id = ? AND location = ?", user_id, segments_number + 1)[0]['segment_id']
-        db.execute("INSERT INTO image (image_url, segment_id) VALUES (?, ?)",
-                   image_url, segment_id)
+        db.execute("INSERT INTO segments (user_id, segment_type, content, location) VALUES (?, ?, ?, ?)",
+                   user_id, "image", image_url, segments_number + 1)
+
         return redirect("/")
 
 @app.route("/about", methods=["GET"])
