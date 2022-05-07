@@ -1,9 +1,17 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Edit
+    Edit paragraph
 {% endblock %}
 
 {% block main %}
-    This is the edit page.
+    <div class="mb-3">
+        <h1>Paragraph editor</h1>
+    </div>
+    <form action="/edit-paragraph" method="post">
+        <div class="mb-3">
+            <textarea autocomplete="off" autofocus class="form-control mx-auto w-auto" id="paragraph-text" name="paragraph-text" placeholder="Enter your text here!" type="text"></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Add paragraph!</button>
+    </form>
 {% endblock %}

@@ -5,5 +5,13 @@
 {% endblock %}
 
 {% block main %}
-    This is the edit page.
+    <div class="mb-3">
+        <h1>Image editor</h1>
+    </div>
+    <form action="/edit-paragraph" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="image-url" name="image-url" placeholder="Enter your image url here!" type="text"></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Add image!</button>
+    </form>
 {% endblock %}

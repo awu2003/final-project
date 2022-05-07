@@ -121,9 +121,30 @@ def register():
 @login_required
 def edit():
     """Hub for editing segments"""
-    return render_template("edit.html")
+    if request.method == "GET":
+        return render_template("edit.html")
 
-@app.route("/about", methods=["POST"])
+@app.route("/edit-header", methods=["GET", "POST"])
+@login_required
+def edit_header():
+    if request.method == "GET":
+        return render_template("edit-header.html")
+
+@app.route("/edit-paragraph", methods=["GET", "POST"])
+@login_required
+def edit_paragraph():
+    if request.method == "GET":
+        return render_template("edit-paragraph.html")
+    #else:
+
+
+@app.route("/edit-image", methods=["GET", "POST"])
+@login_required
+def edit_image():
+    if request.method == "GET":
+        return render_template("edit-image.html")
+
+@app.route("/about", methods=["GET"])
 @login_required
 def about():
     """A little more about this project!"""
