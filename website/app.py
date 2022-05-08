@@ -326,7 +326,7 @@ def friend_lookup():
                                friend_user)
         return render_template("friend-get.html", segments=segments)
 
-@app.route("/edit-design", methods=["GET", "Post"])
+@app.route("/edit-design", methods=["GET", "POST"])
 @login_required
 def edit_design():
     """A little more about this project!"""
@@ -334,6 +334,21 @@ def edit_design():
         return render_template("edit-design.html")
     else:
         user_id = session["user_id"]
+        # get values from form
+        background_color = request.form.get("background-color")
+        header_font = request.form.get("header-font")
+        header_size = request.form.get("header-size")
+        paragraph_font = request.form.get("paragraph-font")
+        paragraph_size = request.form.get("paragraph-size")
+
+        if any(b == None for b in (background_color, header_font, header_size, paragraph_font, paragraph_size)):
+            flash("Must complete form!")
+            return redirect(request.url)
+        # update design table
+        db.execute("UPDATE design SET background_color = ?, header_font = ?, header_size = ?, paragraph_font = ?, paragraph_size = ? WHERE user_id = ?",
+                    background_color, header_font, header_size, paragraph_font, paragraph_size, user_id)
+        flash('Design updated!')
+        return redirect("/")
 
 @app.route("/about", methods=["GET"])
 @login_required

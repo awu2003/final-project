@@ -33,6 +33,16 @@ nav .navbar-brand
     font-family: "Bradley hand";
 }
 
+/* font sizes */
+
+.medium {
+    font-size: 100%;
+}
+
+.large {
+    font-size: 120%;
+}
+
 .button {
     display: inline-block;
     width: 30%;
