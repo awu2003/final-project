@@ -32,13 +32,16 @@
                     {% if session["user_id"] %}
                         <ul class="navbar-nav me-auto mt-2">
                             <li class="nav-item"><a class="nav-link" href="/edit">Edit your page!</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/edit-design">Edit design</a></li>
                             <li class="nav-item"><a class="nav-link" href="/friend-lookup">View friend's website</a></li>
                             <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/edit-header">Edit header</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/edit-paragraph">Edit paragraph</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/edit-image">Edit image</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/edit-video.html">Edit video</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">  Edit  </a>
+                                 <ul class="dropdown-menu">
+                                   <li><a class="dropdown-item" href="/edit-header"> Edit header</a></li>
+                                   <li><a class="dropdown-item" href="/edit-paragraph"> Edit paragraph </a></li>
+                                   <li><a class="dropdown-item" href="/edit-image"> Edit image </a></li>
+                                 </ul>
+                             </li>
                         </ul>
                         <ul class="navbar-nav ms-auto mt-2">
                             <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
