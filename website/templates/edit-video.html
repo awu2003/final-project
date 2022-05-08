@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit video
+{% endblock %}
+
+{% block main %}
+    <div class="mb-3">
+        <h1>Video editor</h1>
+    </div>
+    {% if segments_number >= 5 %}
+        <div class="mb-3">
+            <p>You have the maximum amount of segments! Go delete some :)</p>
+        </div>
+    {% else %}
+        <form action="/edit-video" method="post">
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="video-url" name="video-url" placeholder="Enter your video url here!" type="text">
+            </div>
+            <button class="btn btn-primary" type="submit" name="add-video" value="add-video">Add video!</button>
+        </form>
+    {% endif %}
+{% endblock %}

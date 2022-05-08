@@ -279,6 +279,34 @@ def edit_image():
                     user_id, "image", "/static/" + filename, segments_number + 1)
                 return redirect("/")
 
+@app.route("/edit-video", methods=["GET", "POST"])
+@login_required
+def edit_video():
+    if request.method == "GET":
+        user_id = session["user_id"]
+        # checks to see if user has enough segment allocations left
+        segments_number = db.execute("SELECT segments_number FROM users WHERE user_id = ?", user_id)[0]['segments_number']
+        return render_template("edit-video.html", segments_number = segments_number)
+    else:
+        user_id = session["user_id"]
+        segments_number = db.execute("SELECT segments_number FROM users WHERE user_id = ?", user_id)[0]['segments_number']
+        if request.form.get('add-video'):
+            # get text from form
+            video_url = request.form.get("video-url")
+            # validate
+            if video_url == "":
+                return apology("must enter url")
+            
+            # SQL time!
+            # update segments number for users table
+            db.execute("UPDATE users SET segments_number = ? WHERE user_id = ?", segments_number + 1, user_id)
+            
+            # add segment to segments table
+            db.execute("INSERT INTO segments (user_id, segment_type, content, location) VALUES (?, ?, ?, ?)",
+                    user_id, "video", video_url, segments_number + 1)
+            flash('Segment created!')
+            return redirect("/")
+
 @app.route("/friend-lookup", methods=["GET", "POST"])
 @login_required
 def friend_lookup():
