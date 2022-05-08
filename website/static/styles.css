@@ -70,12 +70,14 @@ nav .navbar-brand
 
 .button {
     display: inline-block;
+    line-height: 195px;
     width: 30%;
     height: 250px;
     border: none;
-    background-color: #8bc7e8;
+    background-color: #4346554f;
     padding: 14px 28px;
-    font-size: 16px;
+    font-size: 18px;
+    font-family: Courier, monospace;
     cursor: pointer;
     text-align: center;
     margin-left: 10px;
@@ -88,3 +90,4 @@ nav .navbar-brand
     background-color: #4CAF50;
     color: white;
   }
+
