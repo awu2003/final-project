@@ -46,8 +46,9 @@ def index():
 
     # Select all segments belonging to a user
     segments = db.execute("SELECT segment_type, content FROM segments WHERE user_id = ? ORDER BY location", user_id)
+    design = db.execute("SELECT * FROM design WHERE user_id = ?", user_id)
 
-    return render_template("index.html", segments = segments)
+    return render_template("index.html", segments = segments, design = design[0])
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -360,7 +361,9 @@ def friend_lookup():
         # select friend's segments
         segments = db.execute("SELECT segment_type, content FROM segments WHERE user_id = (SELECT user_id FROM users WHERE username = ?) ORDER BY location",
                                friend_user)
-        return render_template("friend-get.html", segments=segments)
+        # select friend's design
+        design = db.execute("SELECT * FROM design WHERE user_id = (SELECT user_id FROM users WHERE username = ?)", friend_user)
+        return render_template("friend-get.html", segments=segments, design=design[0])
 
 @app.route("/edit-design", methods=["GET", "POST"])
 @login_required
