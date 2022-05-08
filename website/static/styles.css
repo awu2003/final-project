@@ -4,6 +4,10 @@ nav .navbar-brand
     font-size: xx-large;
 }
 
+body{
+    font-family:'Times New Roman', Times, serif;
+}
+
 /* colors */
 .white {
     background-color: #ffffff
@@ -85,10 +89,9 @@ nav .navbar-brand
     width: 30%;
     height: 250px;
     border: none;
-    background-color: #4346554f;
+    background-color: #43465576;
     padding: 14px 28px;
     font-size: 18px;
-    font-family: Courier, monospace;
     cursor: pointer;
     text-align: center;
     margin-left: 10px;
@@ -98,7 +101,7 @@ nav .navbar-brand
   }
 
 .button:hover {
-    background-color: #4CAF50;
+    background-color: #546f8049;
     color: white;
   }
 

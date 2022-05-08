@@ -33,7 +33,7 @@
                 <div class="collapse navbar-collapse" id="navbar">
                     {% if session["user_id"] %}
                         <ul class="navbar-nav me-auto mt-2">
-                            <li class="nav-item"><a class="nav-link" href="/edit">Edit your page!</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/edit"> Edit</a></li>
                             <li class="nav-item"><a class="nav-link" href="/friend-lookup">View friend's website</a></li>
                             <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
                             <li class="nav-item dropdown">
@@ -48,6 +48,19 @@
                                  </ul>
                              </li>
                         </ul>
+                        <div class="pos-f-t">
+                            <div class="collapse" id="navbarToggleExternalContent">
+                              <div class="bg-dark p-4">
+                                <h4 class="text-white">Collapsed content</h4>
+                                <span class="text-muted">Toggleable via the navbar brand.</span>
+                              </div>
+                            </div>
+                            <nav class="navbar navbar-dark bg-dark">
+                              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                              </button>
+                            </nav>
+                          </div>
                         <ul class="navbar-nav ms-auto mt-2">
                             <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
                         </ul>

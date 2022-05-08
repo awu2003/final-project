@@ -327,7 +327,7 @@ def edit_spotify():
             # get text from form
             spotify_url = request.form.get("spotify-url")
             # source for partition: https://www.stackvidhya.com/get-substring-of-string-python/
-            spotify_url = spotify_url.partition("list/")[2]
+            spotify_url = spotify_url.partition("com/")[2]
             spotify_url = spotify_url.partition("?")[0]
             # validate
             if spotify_url == "":

@@ -21,13 +21,9 @@
         {% elif segment.segment_type == "image" %}
             <img class="imgframe" width="50%" src="{{ segment.content }}">
         {% elif segment.segment_type == "video" %}
-            <iframe width="420" height="315" src="https://www.youtube.com/embed/{{ segment.content }}"
-            frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
-            encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/{{ segment.content }}"></iframe>
         {% elif segment.segment_type == "spotify" %}
-            <iframe src="https://open.spotify.com/embed/playlist/{{ segment.content }}?utm_source=generator" 
-            width="75%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; 
-            clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+            <iframe src="https://open.spotify.com/embed/{{ segment.content }}?utm_source=generator"></iframe>
         {% endif %}
     </div>
     {% endfor %}
