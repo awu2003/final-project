@@ -11,9 +11,9 @@
             <h1>My friends</h1>
         </div>
         <div class="mb-3">
-            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="friend-lookup" name="friend-lookup" placeholder="Enter your friend's username here!" type="text">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="friend-lookup" name="friend-lookup" placeholder="Enter a username here!" type="text">
         </div>
-        <button class="btn btn-primary" type="submit">Look up friend!</button>
+        <button class="btn btn-primary" type="submit" name="add-friend" value="add-friend">Add friend!</button>
         <table class="table">
             <thead>
                 <tr>
@@ -26,7 +26,7 @@
                 {% for friend in friends %}
                     <tr>
                         <th scope="row">{{ friend.friend_username }}</th>
-                        <td><button class="btn btn-secondary" type="submit" name="up-button" value="{{ friend.friend_username }}">Move up</button></td>
+                        <td><button class="btn btn-secondary" type="submit" name="website-button" value="{{ friend.friend_username }}">View Website</button></td>
                         <td><button class="btn btn-secondary" type="submit" name="delete-button" value="{{ friend.friend_username }}">Delete</button></td>
                     </tr>
                 {% endfor %}

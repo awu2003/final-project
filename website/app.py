@@ -138,13 +138,12 @@ def register():
 @login_required
 def edit():
     """Hub for editing segments"""
+    user_id = session["user_id"]
     if request.method == "GET":
-        user_id = session["user_id"]
         segments = db.execute("SELECT segment_type, location FROM segments WHERE user_id = ? ORDER BY location", user_id)
         return render_template("edit.html", segments=segments)
     else:
         # gets info from form
-        user_id = session["user_id"]
         if request.form.get('delete-button'):
             button_value = int(request.form['delete-button'])
 
@@ -364,7 +363,7 @@ def friend_lookup():
         # makes sure username exists
         friend_user = request.form.get("friend-lookup")
         if friend_user == "":
-            return apology("must enter text")
+            return apology("must enter username")
         if len(db.execute("SELECT username FROM users WHERE username = ?", friend_user)) == 0:
             return apology("username does not exist")
         
@@ -380,24 +379,42 @@ def friend_lookup():
 @login_required
 def my_friends():
     """Look up friend's website"""
+    user_id = session["user_id"]
     if request.method == "GET":
-        user_id = session["user_id"]
         friends = db.execute("SELECT friend_username FROM friends WHERE user_id = ?", user_id)
         return render_template("my-friends.html", friends=friends)
     else:
         # makes sure username exists
-        friend_user = request.form.get("friend-lookup")
-        if friend_user == "":
-            return apology("must enter text")
-        if len(db.execute("SELECT username FROM users WHERE username = ?", friend_user)) == 0:
-            return apology("username does not exist")
-        
-        # select friend's segments
-        segments = db.execute("SELECT segment_type, content FROM segments WHERE user_id = (SELECT user_id FROM users WHERE username = ?) ORDER BY location",
+        if request.form.get("add-friend"):
+            friend_user = request.form.get("friend-lookup")
+            if friend_user == "":
+                return apology("must enter username")
+            if len(db.execute("SELECT username FROM users WHERE username = ?", friend_user)) == 0:
+                return apology("username does not exist")
+            if len(db.execute("SELECT friend_username FROM friends WHERE user_id = ? AND friend_username = ?", user_id, friend_user)) > 0:
+                return apology("friend already added")
+            
+            # add friend
+            db.execute("INSERT INTO friends (user_id, friend_username) VALUES (?, ?)", user_id, friend_user)
+
+            # reload page
+            friends = db.execute("SELECT friend_username FROM friends WHERE user_id = ?", user_id)
+            return render_template("my-friends.html", friends=friends)
+        elif request.form.get("website-button"):
+            friend_user = request.form['website-button']
+
+            # select friend's segments
+            segments = db.execute("SELECT segment_type, content FROM segments WHERE user_id = (SELECT user_id FROM users WHERE username = ?) ORDER BY location",
                                friend_user)
-        # select friend's design
-        design = db.execute("SELECT * FROM design WHERE user_id = (SELECT user_id FROM users WHERE username = ?)", friend_user)
-        return render_template("friend-get.html", segments=segments, design=design[0])
+            # select friend's design
+            design = db.execute("SELECT * FROM design WHERE user_id = (SELECT user_id FROM users WHERE username = ?)", friend_user)
+            return render_template("friend-get.html", segments=segments, design=design[0])
+        else:
+            friend_user = request.form['delete-button']
+            db.execute("DELETE FROM friends WHERE user_id = ? AND friend_username = ?", user_id, friend_user)
+            friends = db.execute("SELECT friend_username FROM friends WHERE user_id = ?", user_id)
+            return render_template("my-friends.html", friends=friends)
+            
 
 
 @app.route("/edit-design", methods=["GET", "POST"])
