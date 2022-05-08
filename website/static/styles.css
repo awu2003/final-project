@@ -5,6 +5,10 @@ nav .navbar-brand
 }
 
 /* colors */
+.white {
+    background-color: #ffffff
+}
+
 .red {
     background-color: #ffe0de
 }
@@ -66,6 +70,13 @@ nav .navbar-brand
 
 .large {
     font-size: 120%;
+}
+
+/* frames */
+.imgframe{ 
+    background:#e2e2e2;
+    padding:12px;
+    border:1px solid #3d3d3d;
 }
 
 .button {
