@@ -48,7 +48,7 @@ def index():
     segments = db.execute("SELECT segment_type, content FROM segments WHERE user_id = ? ORDER BY location", user_id)
     design = db.execute("SELECT * FROM design WHERE user_id = ?", user_id)
 
-    return render_template("index.html", segments = segments, design = design[0])
+    return render_template("index.html", segments = segments, design = design[0], len=len)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -372,7 +372,7 @@ def friend_lookup():
                                friend_user)
         # select friend's design
         design = db.execute("SELECT * FROM design WHERE user_id = (SELECT user_id FROM users WHERE username = ?)", friend_user)
-        return render_template("friend-get.html", segments=segments, design=design[0])
+        return render_template("friend-get.html", segments=segments, design=design[0], len=len)
 
 
 @app.route("/my-friends", methods=["GET", "POST"])
@@ -408,7 +408,7 @@ def my_friends():
                                friend_user)
             # select friend's design
             design = db.execute("SELECT * FROM design WHERE user_id = (SELECT user_id FROM users WHERE username = ?)", friend_user)
-            return render_template("friend-get.html", segments=segments, design=design[0])
+            return render_template("friend-get.html", segments=segments, design=design[0], len=len)
         else:
             friend_user = request.form['delete-button']
             db.execute("DELETE FROM friends WHERE user_id = ? AND friend_username = ?", user_id, friend_user)

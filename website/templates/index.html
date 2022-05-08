@@ -6,6 +6,9 @@
 
 {% block main %}
 <div class="py-5 {{ design.background_color }}">
+    {% if len(segments) == 0 %}
+        <p>Your page is empty. Go add some segments!</p>
+    {% endif %}
     {% for segment in segments %}
     <div class="mb-3">
         {% if segment.segment_type == "header" %}
