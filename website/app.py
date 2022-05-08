@@ -388,9 +388,3 @@ def edit_design():
                     background_color, header_font, header_size, paragraph_font, paragraph_size, user_id)
         flash('Design updated!')
         return redirect("/")
-
-@app.route("/about", methods=["GET"])
-@login_required
-def about():
-    """A little more about this project!"""
-    return render_template("about.html")
