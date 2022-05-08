@@ -10,16 +10,16 @@
     <div class="mb-3">
         {% if segment.segment_type == "header" %}
             {% if design.header_size == "small" %}
-                <h3 class="{{ design.header_font }}">{{ segment.content }}</h3>
+                <h3 class="{{ design.header_font }} headerframe">{{ segment.content }}</h3>
             {% elif design.header_size == "medium" %}
-                <h2 class="{{ design.header_font }}">{{ segment.content }}</h2>
+                <h2 class="{{ design.header_font }} headerframe">{{ segment.content }}</h2>
             {% else %}
-                <h1 class="{{ design.header_font }}">{{ segment.content }}</h1>
+                <h1 class="{{ design.header_font }} headerframe">{{ segment.content }}</h1>
             {% endif %}
         {% elif segment.segment_type == "paragraph" %}
-            <p class="{{ design.paragraph_font }} {{ design.paragraph_size }}">{{ segment.content }}</p>
+            <p class="{{ design.paragraph_font }} {{ design.paragraph_size }} pframe">{{ segment.content }}</p>
         {% elif segment.segment_type == "image" %}
-            <img class="imgframe" width="50%" src="{{ segment.content }}">
+            <img class="imgframe" src="{{ segment.content }}">
         {% elif segment.segment_type == "video" %}
             <iframe src="https://www.youtube.com/embed/{{ segment.content }}"></iframe>
         {% elif segment.segment_type == "spotify" %}

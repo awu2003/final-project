@@ -77,10 +77,39 @@ body{
 }
 
 /* frames */
-.imgframe{ 
-    background:#e2e2e2;
-    padding:12px;
-    border:1px solid #3d3d3d;
+.headerframe {
+    margin: auto;
+    width: 75%;
+    max-width: 750px;
+}
+
+.pframe {
+    margin: auto;
+    width: 75%;
+    max-width: 750px;
+}
+
+.imgframe { 
+    width: 75%;
+    max-width: 500px;
+    min-width: 200px;
+    background:#eeeeee;
+    padding: 12px;
+    border: 1px solid #3d3d3d;
+}
+
+.spotifyframe { 
+    width: 75%;
+    height: 380px;
+    max-width: 500px;
+    min-width: 200px;
+}
+
+.videoframe { 
+    aspect-ratio: 16 / 9;
+    width: 75%;
+    max-width: 500px;
+    min-width: 200px;
 }
 
 .button {
