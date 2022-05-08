@@ -4,22 +4,33 @@ nav .navbar-brand
     font-size: xx-large;
 }
 
-/* Colors for brand */
-nav .navbar-brand .blue
-{
-    color: #537fbe;
+/* Fonts */
+.helvetica-neue {
+    font-family: "Helvetica Neue";
 }
-nav .navbar-brand .red
-{
-    color: #ea433b;
+
+.helvetica-neue {
+    font-family: "Arial";
 }
-nav .navbar-brand .yellow
-{
-    color: #f5b82e;
+
+.verdana {
+    font-family: "Verdana";
 }
-nav .navbar-brand .green
-{
-    color: #2e944b;
+
+.georgia {
+    font-family: "Georgia";
+}
+
+.didot {
+    font-family: "Didot";
+}
+
+.courier-new {
+    font-family: "Courier New";
+}
+
+.bradley-hand {
+    font-family: "Bradley hand";
 }
 
 .button {

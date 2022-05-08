@@ -8,40 +8,96 @@
     <div class="mb-3">
         <h1>Design Editor</h1>
     </div>
-    <form action="/edit-design" method="post">
-        <h3>Background color</h3>
-            <div class="form-check form-check-inline">
-                <input type="radio" id="background-color" name="background-color" value="white"> <label>White</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input type="radio" id="background-color" name="background-color" value="red"> <label>Red</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input type="radio" id="background-color" name="background-color" value="orange"> <label>Orange</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input type="radio" id="background-color" name="background-color" value="yellow"> <label>Yellow</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input type="radio" id="background-color" name="background-color" value="green"> <label>Green</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input type="radio" id="background-color" name="background-color" value="blue"> <label>Blue</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input type="radio" id="background-color" name="background-color" value="purple"> <label>Purple</label>
-            </div>
-        <h3>Header font</h3>
-            <div class="form-check form-check-inline">
-                <input type="radio" id="header-font" id="header-font" value="helvetica neue"> <label>Helvetica Neue</label>
-            </div>
-        </select>
-        <h3>Header size</h3>
-        <h3>Paragraph font</h3>
-        <h3>Paragraph size</h3>
+    <form class="mb-3"action="/edit-design" method="post">
         <div class="mb-3">
-            <textarea autocomplete="off" autofocus class="form-control mx-auto w-auto" id="paragraph-text" name="paragraph-text" placeholder="Enter your text here!" type="text"></textarea>
+            <h3>Background color</h3>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="background-color" name="background-color" value="white"> <label>White</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="background-color" name="background-color" value="red"> <label>Red</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="background-color" name="background-color" value="orange"> <label>Orange</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="background-color" name="background-color" value="yellow"> <label>Yellow</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="background-color" name="background-color" value="green"> <label>Green</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="background-color" name="background-color" value="blue"> <label>Blue</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="background-color" name="background-color" value="purple"> <label>Purple</label>
+                </div>
+            <h3>Header font</h3>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="header-font" id="header-font" value="helvetica-neue"> <label class="helvetica-neue">Helvetica Neue</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="header-font" id="header-font" value="arial"> <label class="arial">Arial</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="header-font" id="header-font" value="verdana"> <label class="verdana">Verdana</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="header-font" id="header-font" value="georgia"> <label class="georgia">Georgia</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="header-font" id="header-font" value="didot"> <label class="didot">Didot</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="header-font" id="header-font" value="courier-new"> <label class="courier-new">Courier New</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="header-font" id="header-font" value="bradley-hand"> <label class="bradley-hand">Bradley Hand</label>
+                </div>
+            <h3>Header size</h3>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="header-size" id="header-size" value="small"> <label class="small">Small</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="header-size" id="header-size" value="medium"> <label class="medium">Medium</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="header-size" id="header-size" value="large"> <label class="large">Large</label>
+                </div>
+            <h3>Paragraph font</h3>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="paragraph-font" id="paragraph-font" value="helvetica-neue"> <label class="helvetica-neue">Helvetica Neue</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="paragraph-font" id="paragraph-font" value="arial"> <label class="arial">Arial</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="paragraph-font" id="paragraph-font" value="verdana"> <label class="verdana">Verdana</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="paragraph-font" id="paragraph-font" value="georgia"> <label class="georgia">Georgia</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="paragraph-font" id="paragraph-font" value="didot"> <label class="didot">Didot</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="paragraph-font" id="paragraph-font" value="courier-new"> <label class="courier-new">Courier New</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="paragraph-font" id="paragraph-font" value="bradley-hand"> <label class="bradley-hand">Bradley Hand</label>
+                </div>
+            <h3>Paragraph size</h3>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="paragraph-size" id="paragraph-size" value="small"> <label class="small">Small</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="paragraph-size" id="paragraph-size" value="medium"> <label class="medium">Medium</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="paragraph-size" id="paragraph-size" value="large"> <label class="large">Large</label>
+                </div>
+            <br>
         </div>
-        <button class="btn btn-primary" type="submit">Make changes!</button>
+    <button class="btn btn-primary" type="submit">Make changes!</button>
     </form>
 {% endblock %}
