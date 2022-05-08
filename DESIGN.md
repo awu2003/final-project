@@ -3,23 +3,24 @@ This file should discuss how you implemented your project and why you made the d
 
 ## Technical Decisions
 
-### In this section, share and justify the technical decisions you made.
+In this section, share and justify the technical decisions you made.
+
 * What design challenge(s) did you run into while completing your project? How did you choose to address them and why?
 
-# Implementing a file upload
+### Implementing a file upload
 One design challenge was implementing a file upload for the "Add image" feature. We were unfamiliar with the code syntax, so we needed to adapt existing code to implement the upload feature. This solution was efficient and allowed us to learn new syntax.
 
-# Processing YouTube and Spotify URLs
+### Processing YouTube and Spotify URLs
 Another challenge was rendering the YouTube and Spotify elements for a user's homepage. The URL for a YouTube video, for example, is different from the source code URL. We needed to partition the original URL to get the video's ID and then write code in the html to format the URL correctly so that video or song showed up on the user's homepage. We choose this solution because it was especially helpful for rendering the Spotify elements, since it allowed us to process any Spotify element, whether it's a playlist, song, or album.
 
 * Was there a feature in your project you could have implemented in multiple ways? Which way did you choose, and why?
 
-# Choosing languages
+### Choosing languages
 For the "Add design" feature, which allows the user to change the style of their website, including background color, we implemented it using Python and CSS. We could've used JavaScript, but we didn't want to have too many different languages in our code, since the other segments were implemented using Python. 
 
 * If you used a new technology, what did you learn about this new technology? Did this technology prove to be the right tool?
 
-# Git
+### Git
 We learned how to use Git so that we can seamlessly share code with each other. It proved to be a super useful tool for our project, since it allowed us to work on separate devices and merge code at certain touchpoints for the most updated version of our project. 
 
 ## Ethical Decisions
