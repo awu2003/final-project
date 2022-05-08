@@ -5,14 +5,29 @@ nav .navbar-brand
 }
 
 /* colors */
+.red {
+    background-color: #ffe0de
+}
+
+.orange {
+    background-color: #ffeade
+}
+
 .yellow {
-    background-color: #fcf5c7
+    background-color: #fffbde
+}
+
+.green {
+    background-color: #ecffde
 }
 
 .blue {
-    background-color: #edf2fb;
+    background-color: #def3ff;
 }
 
+.purple {
+    background-color: #f0deff;
+}
 
 /* Fonts */
 .helvetica-neue {
