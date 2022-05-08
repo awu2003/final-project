@@ -122,6 +122,9 @@ def register():
         # set current user session
         session["user_id"] = db.execute("SELECT * FROM users WHERE username = ?", username)[0]["user_id"]
 
+        # add design table row
+        db.execute("INSERT INTO design (user_id) VALUES (?)", session["user_id"])
+
         # redirect to home page
         return redirect("/")
     else:
@@ -269,6 +272,8 @@ def edit_image():
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
+                # update user table
+                db.execute("UPDATE users SET segments_number = ? WHERE user_id = ?", segments_number + 1, user_id)
                 # add segment to segments table
                 db.execute("INSERT INTO segments (user_id, segment_type, content, location) VALUES (?, ?, ?, ?)",
                     user_id, "image", "/static/" + filename, segments_number + 1)
@@ -292,6 +297,15 @@ def friend_lookup():
         segments = db.execute("SELECT segment_type, content FROM segments WHERE user_id = (SELECT user_id FROM users WHERE username = ?) ORDER BY location",
                                friend_user)
         return render_template("friend-get.html", segments=segments)
+
+@app.route("/edit-design", methods=["GET", "Post"])
+@login_required
+def edit_design():
+    """A little more about this project!"""
+    if request.method == "GET":
+        return render_template("edit-design.html")
+    else:
+        user_id = session["user_id"]
 
 @app.route("/about", methods=["GET"])
 @login_required

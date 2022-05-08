@@ -34,6 +34,19 @@ CREATE TABLE users (
     segments_number INTEGER NOT NULL DEFAULT 0
 );
 
+CREATE TABLE design (
+    user_id INTEGER NOT NULL,
+    header_font TEXT NOT NULL DEFAULT 'helvetica neue',
+    header_size TEXT NOT NULL DEFAULT 'medium',
+    paragraph_font TEXT NOT NULL DEFAULT 'helvetica neue',
+    paragraph_size TEXT NOT NULL DEFAULT 'medium',
+    background_color TEXT NOT NULL DEFAULT 'white',
+    FOREIGN KEY(user_id) REFERENCES users(user_id)
+);
+
+INSERT INTO design (user_id)
+VALUES (1);
+
     {{segments}}
     <br>
     {{ segments[1]["segment_type"] }}
@@ -42,6 +55,7 @@ USERS
 
 Alice, 1234
 Amy, 123
+Bob, 12
 
 # final-project
 RUN THESE TWO LINES IN THE TERMINAL

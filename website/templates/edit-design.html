@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit design
+{% endblock %}
+
+{% block main %}
+    <div class="mb-3">
+        <h1>Design Editor</h1>
+    </div>
+    <form action="/edit-design" method="post">
+        <h3>Background color</h3>
+            <div class="form-check form-check-inline">
+                <input type="radio" id="background-color" name="background-color" value="white"> <label>White</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="radio" id="background-color" name="background-color" value="red"> <label>Red</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="radio" id="background-color" name="background-color" value="orange"> <label>Orange</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="radio" id="background-color" name="background-color" value="yellow"> <label>Yellow</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="radio" id="background-color" name="background-color" value="green"> <label>Green</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="radio" id="background-color" name="background-color" value="blue"> <label>Blue</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="radio" id="background-color" name="background-color" value="purple"> <label>Purple</label>
+            </div>
+        <h3>Header font</h3>
+            <div class="form-check form-check-inline">
+                <input type="radio" id="header-font" id="header-font" value="helvetica neue"> <label>Helvetica Neue</label>
+            </div>
+        </select>
+        <h3>Header size</h3>
+        <h3>Paragraph font</h3>
+        <h3>Paragraph size</h3>
+        <div class="mb-3">
+            <textarea autocomplete="off" autofocus class="form-control mx-auto w-auto" id="paragraph-text" name="paragraph-text" placeholder="Enter your text here!" type="text"></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Make changes!</button>
+    </form>
+{% endblock %}
