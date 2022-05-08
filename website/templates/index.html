@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block main %}
-    <div class="{{ design.background_color }}">
+    <div class="py-5 {{ design.background_color }}">
     {% for segment in segments %}
         {% if segment.segment_type == "header" %}
             {% if design.header_size == "small" %}

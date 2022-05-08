@@ -5,10 +5,12 @@
 {% endblock %}
 
 {% block main %}
+<div class="py-5">
     <form action="/friend-lookup" method="post">
         <div class="mb-3">
             <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="friend-lookup" name="friend-lookup" placeholder="Enter your friend's username here!" type="text">
         </div>
         <button class="btn btn-primary" type="submit">Look up friend!</button>
     </form>
+</div>
 {% endblock %}
