@@ -16,7 +16,7 @@
         <!-- https://favicon.io/emoji-favicons/money-bag/ -->
         <link href="/static/favicon.ico" rel="icon">
 
-        <link href="/static/styles.css" rel="stylesheet">
+        <link href="/static/assets/styles.css" rel="stylesheet">
 
         <title>CircleSpace: {% block title %}{% endblock %}</title>
 
@@ -26,7 +26,7 @@
 
         <nav class="bg-light border navbar navbar-expand-md navbar-light">
             <div class="container-fluid">
-                <img width=50px height=50px src="/static/double.png" alt="logo">
+                <img width=50px height=50px src="/static/assets/double.png" alt="logo">
                 <div></div>
                 <a class="navbar-brand" href="/">CircleSpace</a>
                 <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
@@ -35,17 +35,17 @@
                 <div class="collapse navbar-collapse" id="navbar">
                     {% if session["user_id"] %}
                         <ul class="navbar-nav me-auto mt-2">
-                            <li class="nav-item"><a class="nav-link" href="/edit"><img src="/static/pencil-solid.svg" class="icon"> Edit your website!</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/friend-lookup"><img src="/static/display-solid.svg" class="icon"> View friend's website</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/edit"><img src="/static/assets/pencil-solid.svg" class="icon"> Edit your website!</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/friend-lookup"><img src="/static/assets/display-solid.svg" class="icon"> View friend's website</a></li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">  Edit  </a>
                                  <ul class="dropdown-menu">
-                                   <li><a class="dropdown-item" href="/edit-header"> Edit header</a></li>
-                                   <li><a class="dropdown-item" href="/edit-paragraph"> Edit paragraph </a></li>
-                                   <li><a class="dropdown-item" href="/edit-image"> Edit image </a></li>
-                                   <li><a class="dropdown-item" href="/edit-spotify"> Edit Spotify </a></li>
-                                   <li><a class="dropdown-item" href="/edit-video"> Edit video </a></li>
-                                   <li><a class="dropdown-item" href="/edit-design"> Edit design </a></li>
+                                   <li><a class="dropdown-item" href="/edit-header"><img src="/static/assets/heading-solid.svg" class="icon">  Edit header</a></li>
+                                   <li><a class="dropdown-item" href="/edit-paragraph"><img src="/static/assets/paragraph-solid.svg" class="icon">  Edit paragraph </a></li>
+                                   <li><a class="dropdown-item" href="/edit-image"><img src="/static/assets/image-solid.svg" class="icon">  Edit image </a></li>
+                                   <li><a class="dropdown-item" href="/edit-spotify"><img src="/static/assets/spotify-brands.svg" class="icon">  Edit Spotify </a></li>
+                                   <li><a class="dropdown-item" href="/edit-video"><img src="/static/assets/youtube-brands.svg" class="icon">  Edit video </a></li>
+                                   <li><a class="dropdown-item" href="/edit-design"><img src="/static/assets/palette-solid.svg" class="icon">  Edit design</a></li>
                                  </ul>
                              </li>
                         </ul>
