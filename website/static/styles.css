@@ -1,3 +1,8 @@
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
 /* Size for brand */
 nav .navbar-brand
 {
@@ -127,10 +132,11 @@ body{
     margin-right: 10px;
     margin-top: 30px;
     transition-duration: 0.4s;
+    color: white;
   }
 
 .button:hover {
     background-color: #546f8049;
-    color: white;
+    color: black;
   }
 
