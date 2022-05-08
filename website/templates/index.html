@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block main %}
+    <div class="{{ design.background_color }}">
     {% for segment in segments %}
         {% if segment.segment_type == "header" %}
             {% if design.header_size == "small" %}
@@ -30,4 +31,5 @@
             clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
         {% endif %}
     {% endfor %}
+    </div>
 {% endblock %}

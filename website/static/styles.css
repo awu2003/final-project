@@ -4,7 +4,15 @@ nav .navbar-brand
     font-size: xx-large;
 }
 
-body {background-color: #FFD1D1;}
+/* colors */
+.yellow {
+    background-color: #fcf5c7
+}
+
+.blue {
+    background-color: #edf2fb;
+}
+
 
 /* Fonts */
 .helvetica-neue {
