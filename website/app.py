@@ -5,6 +5,7 @@ from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.utils import secure_filename
 
 from helpers import apology, login_required, lookup, usd
 
@@ -24,6 +25,9 @@ Session(app)
 
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///database.db")
+
+# configure upload folder
+app.config["UPLOAD_FOLDER"] = "./static"
 
 @app.after_request
 def after_request(response):
@@ -193,6 +197,7 @@ def edit_header():
         db.execute("INSERT INTO segments (user_id, segment_type, content, location) VALUES (?, ?, ?, ?)",
                    user_id, "header", header_text, segments_number + 1)
 
+        flash('Segment created!')
         return redirect("/")
 
 @app.route("/edit-paragraph", methods=["GET", "POST"])
@@ -218,7 +223,7 @@ def edit_paragraph():
         # add segment to segments table
         db.execute("INSERT INTO segments (user_id, segment_type, content, location) VALUES (?, ?, ?, ?)",
                    user_id, "paragraph", paragraph_text, segments_number + 1)
-
+        flash('Segment created!')
         return redirect("/")
 
 
@@ -231,22 +236,43 @@ def edit_image():
         segments_number = db.execute("SELECT segments_number FROM users WHERE user_id = ?", user_id)[0]['segments_number']
         return render_template("edit-image.html", segments_number = segments_number)
     else:
-        # get text from form
-        image_url = request.form.get("image-url")
-        if image_url == "":
-            return apology("must enter url")
-        
-        # SQL time!
         user_id = session["user_id"]
-        # update segments number for users table
         segments_number = db.execute("SELECT segments_number FROM users WHERE user_id = ?", user_id)[0]['segments_number']
-        db.execute("UPDATE users SET segments_number = ? WHERE user_id = ?", segments_number + 1, user_id)
-        
-        # add segment to segments table
-        db.execute("INSERT INTO segments (user_id, segment_type, content, location) VALUES (?, ?, ?, ?)",
-                   user_id, "image", image_url, segments_number + 1)
+        if request.form.get('add-image'):
+            # get text from form
+            image_url = request.form.get("image-url")
+            if image_url == "":
+                return apology("must enter url")
+            
+            # SQL time!
+            # update segments number for users table
+            db.execute("UPDATE users SET segments_number = ? WHERE user_id = ?", segments_number + 1, user_id)
+            
+            # add segment to segments table
+            db.execute("INSERT INTO segments (user_id, segment_type, content, location) VALUES (?, ?, ?, ?)",
+                    user_id, "image", image_url, segments_number + 1)
+            flash('Segment created!')
+            return redirect("/")
+        else:
+            # code adapted from here: https://flask.palletsprojects.com/en/2.1.x/patterns/fileuploads/
+            # check if the post request has the file part
+            if 'file' not in request.files:
+                flash("No file part")
+                return redirect(request.url)
+            file = request.files['file']
+            # If the user does not select a file, the browser submits an
+            # empty file without a filename.
+            if file.filename == '':
+                flash('No selected file')
+                return redirect(request.url)
+            if file:
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-        return redirect("/")
+                # add segment to segments table
+                db.execute("INSERT INTO segments (user_id, segment_type, content, location) VALUES (?, ?, ?, ?)",
+                    user_id, "image", "/static/" + filename, segments_number + 1)
+                return redirect("/")
 
 @app.route("/friend-lookup", methods=["GET", "POST"])
 @login_required
