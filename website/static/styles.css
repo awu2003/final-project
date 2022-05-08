@@ -4,6 +4,8 @@ nav .navbar-brand
     font-size: xx-large;
 }
 
+body {background-color: #FFD1D1;}
+
 /* Fonts */
 .helvetica-neue {
     font-family: "Helvetica Neue";

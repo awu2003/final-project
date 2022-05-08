@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit Spotify
+{% endblock %}
+
+{% block main %}
+    <div class="mb-3">
+        <h1>Spotify editor</h1>
+    </div>
+    {% if segments_number >= 8 %}
+        <div class="mb-3">
+            <p>You have the maximum amount of segments! Go delete some :)</p>
+        </div>
+    {% else %}
+        <form action="/edit-spotify" method="post">
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="spotify-url" name="spotify-url" placeholder="Enter your Spotify url here!" type="text">
+            </div>
+            <button class="btn btn-primary" type="submit" name="add-spotify" value="add-spotify">Add Spotify!</button>
+        </form>
+    {% endif %}
+{% endblock %}

@@ -5,21 +5,29 @@
 {% endblock %}
 
 {% block main %}
-    {{segments}}
-    <br>
-
     {% for segment in segments %}
-        {% if segment["segment_type"] == "header" %}
-            <h1>{{ segment.content }} </h1>
-        {% elif segment["segment_type"] == "paragraph" %}
-            <p>{{ segment.content }}</p>
-        {% elif segment["segment_type"] == "image" %}
+        {% if segment.segment_type == "header" %}
+            {% if design.header_size == "small" %}
+                <h3 class="{{ design.header_font }}">{{ segment.content }}</h3>
+            {% elif design.header_size == "medium" %}
+                <h2 class="{{ design.header_font }}">{{ segment.content }}</h2>
+            {% else %}
+                <h1 class="{{ design.header_font }}">{{ segment.content }}</h1>
+            {% endif %}
+        {% elif segment.segment_type == "paragraph" %}
+            <p class="{{ design.paragraph_font }} {{ design.paragraph_size }}">{{ segment.content }}</p>
+        {% elif segment.segment_type == "image" %}
             <a href="{{ segment.content }}" > 
-                <img src = "{{ segment.content }}">
+                <img width="50%" src = "{{ segment.content }}">
             </a>
-        {% elif segment["segment_type"] == "video" %}
-            <iframe src="{{ segment.content }}"> </iframe> 
-        {% elif segment["segment_type"] == "spotify" %}
+        {% elif segment.segment_type == "video" %}
+            <iframe width="420" height="315" src="https://www.youtube.com/embed/{{ segment.content }}"
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+            encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% elif segment.segment_type == "spotify" %}
+            <iframe src="https://open.spotify.com/embed/playlist/{{ segment.content }}?utm_source=generator" 
+            width="75%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; 
+            clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
         {% endif %}
     {% endfor %}
 {% endblock %}
