@@ -6,6 +6,9 @@
 
 {% block main %}
 <main class="container py-5 text-center">
+    <div class="mb-3">
+        <h1>Edit your website!</h1>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -39,13 +42,15 @@
             </form>
         </tbody>
     </table>
-
-<div>
-    <a class="button" href="/edit-header"><img src="/static/assets/heading-solid.svg" class="icon-large">  Header</a>
-    <a class="button" href="/edit-paragraph"><img src="/static/assets/paragraph-solid.svg" class="icon-large">  Paragraph</a>
-    <a class="button" href="/edit-image"><img src="/static/assets/image-solid.svg" class="icon-large">  Image</a>
-    <a class="button" href="/edit-video"><img src="/static/assets/youtube-brands.svg" class="icon-large">  Video</a>
-    <a class="button" href="/edit-spotify"><img src="/static/assets/spotify-brands.svg" class="icon-large">  Spotify</a>
-    <a class="button" href="/edit-design"><img src="/static/assets/palette-solid.svg" class="icon-large">  Design</a>
-</div>
+    <div class="mb-3">
+        <h1>Add new segments</h1>
+    </div>
+    <div>
+        <a class="button" href="/edit-header"><img src="/static/assets/heading-solid.svg" class="icon-large">  Header</a>
+        <a class="button" href="/edit-paragraph"><img src="/static/assets/paragraph-solid.svg" class="icon-large">  Paragraph</a>
+        <a class="button" href="/edit-image"><img src="/static/assets/image-solid.svg" class="icon-large">  Image</a>
+        <a class="button" href="/edit-video"><img src="/static/assets/youtube-brands.svg" class="icon-large">  Video</a>
+        <a class="button" href="/edit-spotify"><img src="/static/assets/spotify-brands.svg" class="icon-large">  Spotify</a>
+        <a class="button" href="/edit-design"><img src="/static/assets/palette-solid.svg" class="icon-large">  Design</a>
+    </div>
 {% endblock %}

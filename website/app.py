@@ -376,6 +376,30 @@ def friend_lookup():
         return render_template("friend-get.html", segments=segments, design=design[0])
 
 
+@app.route("/my-friends", methods=["GET", "POST"])
+@login_required
+def my_friends():
+    """Look up friend's website"""
+    if request.method == "GET":
+        user_id = session["user_id"]
+        friends = db.execute("SELECT friend_username FROM friends WHERE user_id = ?", user_id)
+        return render_template("my-friends.html", friends=friends)
+    else:
+        # makes sure username exists
+        friend_user = request.form.get("friend-lookup")
+        if friend_user == "":
+            return apology("must enter text")
+        if len(db.execute("SELECT username FROM users WHERE username = ?", friend_user)) == 0:
+            return apology("username does not exist")
+        
+        # select friend's segments
+        segments = db.execute("SELECT segment_type, content FROM segments WHERE user_id = (SELECT user_id FROM users WHERE username = ?) ORDER BY location",
+                               friend_user)
+        # select friend's design
+        design = db.execute("SELECT * FROM design WHERE user_id = (SELECT user_id FROM users WHERE username = ?)", friend_user)
+        return render_template("friend-get.html", segments=segments, design=design[0])
+
+
 @app.route("/edit-design", methods=["GET", "POST"])
 @login_required
 def edit_design():

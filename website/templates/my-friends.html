@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My friends
+{% endblock %}
+
+{% block main %}
+<div class="py-5">
+    <form action="/my-friends" method="post">
+        <div class="mb-3">
+            <h1>My friends</h1>
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="friend-lookup" name="friend-lookup" placeholder="Enter your friend's username here!" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Look up friend!</button>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Friend</th>
+                    <th scope="col">View Website</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for friend in friends %}
+                    <tr>
+                        <th scope="row">{{ friend.friend_username }}</th>
+                        <td><button class="btn btn-secondary" type="submit" name="up-button" value="{{ friend.friend_username }}">Move up</button></td>
+                        <td><button class="btn btn-secondary" type="submit" name="delete-button" value="{{ friend.friend_username }}">Delete</button></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </form>
+</div>
+{% endblock %}
