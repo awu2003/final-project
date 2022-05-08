@@ -50,6 +50,7 @@ def index():
 
     return render_template("index.html", segments = segments, design = design[0])
 
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
@@ -96,6 +97,7 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user"""
@@ -131,6 +133,7 @@ def register():
     else:
         return render_template("register.html")
 
+
 @app.route("/edit", methods=["GET", "POST"])
 @login_required
 def edit():
@@ -157,7 +160,8 @@ def edit():
                 if i > button_value:
                     db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", i - 1, i, user_id)
 
-            return redirect("/")
+            segments = db.execute("SELECT segment_type, location FROM segments WHERE user_id = ? ORDER BY location", user_id)
+            return render_template("edit.html", segments=segments)
         elif request.form.get('up-button'):
             button_value = int(request.form['up-button'])
 
@@ -166,7 +170,8 @@ def edit():
             db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", button_value, button_value - 1, user_id)
             db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", button_value - 1, 100000, user_id)
             
-            return redirect("/")
+            segments = db.execute("SELECT segment_type, location FROM segments WHERE user_id = ? ORDER BY location", user_id)
+            return render_template("edit.html", segments=segments)
         else:
             button_value = int(request.form['down-button'])
 
@@ -175,7 +180,9 @@ def edit():
             db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", button_value, button_value + 1, user_id)
             db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", button_value + 1, 100000, user_id)
             
-            return redirect("/")
+            segments = db.execute("SELECT segment_type, location FROM segments WHERE user_id = ? ORDER BY location", user_id)
+            return render_template("edit.html", segments=segments)
+
 
 @app.route("/edit-header", methods=["GET", "POST"])
 @login_required
@@ -203,6 +210,7 @@ def edit_header():
 
         flash('Segment created!')
         return redirect("/")
+
 
 @app.route("/edit-paragraph", methods=["GET", "POST"])
 @login_required
@@ -280,6 +288,7 @@ def edit_image():
                     user_id, "image", "/static/" + filename, segments_number + 1)
                 return redirect("/")
 
+
 @app.route("/edit-video", methods=["GET", "POST"])
 @login_required
 def edit_video():
@@ -310,6 +319,7 @@ def edit_video():
                     user_id, "video", video_url, segments_number + 1)
             flash('Segment created!')
             return redirect("/")
+
 
 @app.route("/edit-spotify", methods=["GET", "POST"])
 @login_required
@@ -364,6 +374,7 @@ def friend_lookup():
         # select friend's design
         design = db.execute("SELECT * FROM design WHERE user_id = (SELECT user_id FROM users WHERE username = ?)", friend_user)
         return render_template("friend-get.html", segments=segments, design=design[0])
+
 
 @app.route("/edit-design", methods=["GET", "POST"])
 @login_required
