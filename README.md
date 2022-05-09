@@ -2,7 +2,13 @@
 
 Hi everyone! For our final project we made CircleSpace, a web app that lets you make your own website! Although both of us got COVID during the few days leading up to the project submission deadline, we tried our best to make our project the best that it could be under the circumstances :)
 
-Project Video Presentation: https://youtu.be/KDquXO_kdaI
+### Project Video Presentation
+https://youtu.be/KDquXO_kdaI
+
+### Existing profiles
+Username: Alice, Password: 1234
+Username: Amy, Password: 123
+Username: bob, Password: 12
 
 # Features
 
