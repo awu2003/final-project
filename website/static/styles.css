@@ -1,0 +1,136 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+body{
+    font-family:Georgia;
+}
+
+/* colors */
+.white {
+    background-color: #ffffff
+}
+
+.red {
+    background-color: #ffe0de
+}
+
+.orange {
+    background-color: #ffeade
+}
+
+.yellow {
+    background-color: #fffbde
+}
+
+.green {
+    background-color: #ecffde
+}
+
+.blue {
+    background-color: #def3ff;
+}
+
+.purple {
+    background-color: #f0deff;
+}
+
+/* Fonts */
+.helvetica-neue {
+    font-family: "Helvetica Neue";
+}
+
+.helvetica-neue {
+    font-family: "Arial";
+}
+
+.verdana {
+    font-family: "Verdana";
+}
+
+.georgia {
+    font-family: "Georgia";
+}
+
+.didot {
+    font-family: "Didot";
+}
+
+.courier-new {
+    font-family: "Courier New";
+}
+
+.bradley-hand {
+    font-family: "Bradley hand";
+}
+
+/* font sizes */
+
+.medium {
+    font-size: 100%;
+}
+
+.large {
+    font-size: 120%;
+}
+
+/* frames */
+.headerframe {
+    margin: auto;
+    width: 75%;
+    max-width: 750px;
+}
+
+.pframe {
+    margin: auto;
+    width: 75%;
+    max-width: 750px;
+}
+
+.imgframe { 
+    width: 75%;
+    max-width: 500px;
+    min-width: 200px;
+    background:#eeeeee;
+    padding: 12px;
+    border: 1px solid #3d3d3d;
+}
+
+.spotifyframe { 
+    width: 75%;
+    height: 380px;
+    max-width: 500px;
+    min-width: 200px;
+}
+
+.videoframe { 
+    aspect-ratio: 16 / 9;
+    width: 75%;
+    max-width: 500px;
+    min-width: 200px;
+}
+
+.button {
+    display: inline-block;
+    line-height: 195px;
+    width: 30%;
+    height: 250px;
+    border: none;
+    background-color: #43465576;
+    padding: 14px 28px;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 30px;
+    transition-duration: 0.4s;
+  }
+
+.button:hover {
+    background-color: #546f8049;
+    color: white;
+  }
+

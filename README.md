@@ -2,6 +2,8 @@
 
 Hi everyone! For our final project we made CircleSpace, a web app that lets you make your own website! Although both of us got COVID during the few days leading up to the project submission deadline, we tried our best to make our project the best that it could be under the circumstances :)
 
+Project Video Presentation: https://youtu.be/KDquXO_kdaI
+
 # Features
 
 Welcome to CircleSpace! Inspired by website builders such as Squarespace and Wix, we created a website that allows users to design their own homepage. Below is a description of how to use each of our website's features:
@@ -38,5 +40,15 @@ Enter a link to any Spotify song, album or playlist and it will render on your h
 
 Select the fonts and background color for your website.
 
-# View friend's website
-You can look up a friend's website using their username and explore their homepage. 
+# View other users' website
+You can look up another user's website using their username and explore their homepage.
+
+# Add friends
+The "My friends" tab allows you to search up your friends using their usernames and add them to your friend list. This grants you easy access to viewing their websites. You can also delete users from your friend list. 
+
+### Guidelines and Restrictions
+- You can have maximum 8 segments at a time. A message telling you that you have reached the maximum will pop up in the form page that you try to access. Delete at least one segment to regain access to the form page.
+
+- If you have no segments, a message will pop up on the home page telling you to add some segments. 
+
+- Due to some restrictions from YouTube, some YouTube videos that you upload won't be viewable on the home page and will instead show up as "Video unavailable". If this happens, try to upload a video that can be viewed.
