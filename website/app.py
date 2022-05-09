@@ -29,6 +29,7 @@ db = SQL("sqlite:///database.db")
 # configure upload folder
 app.config["UPLOAD_FOLDER"] = "./static"
 
+
 @app.after_request
 def after_request(response):
     """Ensure responses aren't cached"""
@@ -48,7 +49,7 @@ def index():
     segments = db.execute("SELECT segment_type, content FROM segments WHERE user_id = ? ORDER BY location", user_id)
     design = db.execute("SELECT * FROM design WHERE user_id = ?", user_id)
 
-    return render_template("index.html", segments = segments, design = design[0], len=len)
+    return render_template("index.html", segments=segments, design=design[0], len=len)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -155,7 +156,7 @@ def edit():
             db.execute("UPDATE users SET segments_number = ? WHERE user_id = ?", segments_number - 1, user_id)
 
             # adjusts rest of segments in relation to segment to delete
-            for i in range (1, segments_number + 1):
+            for i in range(1, segments_number + 1):
                 if i > button_value:
                     db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", i - 1, i, user_id)
 
@@ -165,9 +166,12 @@ def edit():
             button_value = int(request.form['up-button'])
 
             # swaps segments
-            db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", 100000, button_value, user_id)
-            db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", button_value, button_value - 1, user_id)
-            db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", button_value - 1, 100000, user_id)
+            db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?",
+                       100000, button_value, user_id)
+            db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?",
+                       button_value, button_value - 1, user_id)
+            db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?",
+                       button_value - 1, 100000, user_id)
             
             segments = db.execute("SELECT segment_type, location FROM segments WHERE user_id = ? ORDER BY location", user_id)
             return render_template("edit.html", segments=segments)
@@ -175,9 +179,12 @@ def edit():
             button_value = int(request.form['down-button'])
 
             # swaps segments
-            db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", 100000, button_value, user_id)
-            db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", button_value, button_value + 1, user_id)
-            db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", button_value + 1, 100000, user_id)
+            db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?",
+                       100000, button_value, user_id)
+            db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", 
+                       button_value, button_value + 1, user_id)
+            db.execute("UPDATE segments SET location = ? WHERE location = ? AND user_id = ?", 
+                       button_value + 1, 100000, user_id)
             
             segments = db.execute("SELECT segment_type, location FROM segments WHERE user_id = ? ORDER BY location", user_id)
             return render_template("edit.html", segments=segments)
@@ -190,7 +197,7 @@ def edit_header():
         user_id = session["user_id"]
         # gets segment number to do conditional rendering on the html
         segments_number = db.execute("SELECT segments_number FROM users WHERE user_id = ?", user_id)[0]['segments_number']
-        return render_template("edit-header.html", segments_number = segments_number)
+        return render_template("edit-header.html", segments_number=segments_number)
     else:
         # get text from form
         header_text = request.form.get("header-text")
@@ -218,7 +225,7 @@ def edit_paragraph():
         user_id = session["user_id"]
         # gets segment number to do conditional rendering on the html
         segments_number = db.execute("SELECT segments_number FROM users WHERE user_id = ?", user_id)[0]['segments_number']
-        return render_template("edit-paragraph.html", segments_number = segments_number)
+        return render_template("edit-paragraph.html", segments_number=segments_number)
     else:
         # get text from form
         paragraph_text = request.form.get("paragraph-text")
@@ -245,7 +252,7 @@ def edit_image():
         user_id = session["user_id"]
         # gets segment number to do conditional rendering on the html
         segments_number = db.execute("SELECT segments_number FROM users WHERE user_id = ?", user_id)[0]['segments_number']
-        return render_template("edit-image.html", segments_number = segments_number)
+        return render_template("edit-image.html", segments_number=segments_number)
     else:
         user_id = session["user_id"]
         segments_number = db.execute("SELECT segments_number FROM users WHERE user_id = ?", user_id)[0]['segments_number']
@@ -261,7 +268,7 @@ def edit_image():
             
             # add segment to segments table
             db.execute("INSERT INTO segments (user_id, segment_type, content, location) VALUES (?, ?, ?, ?)",
-                    user_id, "image", image_url, segments_number + 1)
+                       user_id, "image", image_url, segments_number + 1)
             flash('Segment created!')
             return redirect("/")
         else:
@@ -284,7 +291,7 @@ def edit_image():
                 db.execute("UPDATE users SET segments_number = ? WHERE user_id = ?", segments_number + 1, user_id)
                 # add segment to segments table
                 db.execute("INSERT INTO segments (user_id, segment_type, content, location) VALUES (?, ?, ?, ?)",
-                    user_id, "image", "/static/" + filename, segments_number + 1)
+                           user_id, "image", "/static/" + filename, segments_number + 1)
                 return redirect("/")
 
 
@@ -296,7 +303,7 @@ def edit_video():
         user_id = session["user_id"]
         # checks to see if user has enough segment allocations left
         segments_number = db.execute("SELECT segments_number FROM users WHERE user_id = ?", user_id)[0]['segments_number']
-        return render_template("edit-video.html", segments_number = segments_number)
+        return render_template("edit-video.html", segments_number=segments_number)
     else:
         user_id = session["user_id"]
         segments_number = db.execute("SELECT segments_number FROM users WHERE user_id = ?", user_id)[0]['segments_number']
@@ -315,7 +322,7 @@ def edit_video():
             
             # add segment to segments table
             db.execute("INSERT INTO segments (user_id, segment_type, content, location) VALUES (?, ?, ?, ?)",
-                    user_id, "video", video_url, segments_number + 1)
+                       user_id, "video", video_url, segments_number + 1)
             flash('Segment created!')
             return redirect("/")
 
@@ -328,7 +335,7 @@ def edit_spotify():
         user_id = session["user_id"]
         # checks to see if user has enough segment allocations left
         segments_number = db.execute("SELECT segments_number FROM users WHERE user_id = ?", user_id)[0]['segments_number']
-        return render_template("edit-spotify.html", segments_number = segments_number)
+        return render_template("edit-spotify.html", segments_number=segments_number)
     else:
         user_id = session["user_id"]
         segments_number = db.execute("SELECT segments_number FROM users WHERE user_id = ?", user_id)[0]['segments_number']
@@ -348,7 +355,7 @@ def edit_spotify():
             
             # add segment to segments table
             db.execute("INSERT INTO segments (user_id, segment_type, content, location) VALUES (?, ?, ?, ?)",
-                    user_id, "spotify", spotify_url, segments_number + 1)
+                       user_id, "spotify", spotify_url, segments_number + 1)
             flash('Segment created!')
             return redirect("/")
 
@@ -368,8 +375,8 @@ def friend_lookup():
             return apology("username does not exist")
         
         # select friend's segments
-        segments = db.execute("SELECT segment_type, content FROM segments WHERE user_id = (SELECT user_id FROM users WHERE username = ?) ORDER BY location",
-                               friend_user)
+        segments = db.execute(
+            "SELECT segment_type, content FROM segments WHERE user_id = (SELECT user_id FROM users WHERE username = ?) ORDER BY location", friend_user)
         # select friend's design
         design = db.execute("SELECT * FROM design WHERE user_id = (SELECT user_id FROM users WHERE username = ?)", friend_user)
         return render_template("friend-get.html", segments=segments, design=design[0], len=len)
@@ -405,7 +412,7 @@ def my_friends():
 
             # select friend's segments
             segments = db.execute("SELECT segment_type, content FROM segments WHERE user_id = (SELECT user_id FROM users WHERE username = ?) ORDER BY location",
-                               friend_user)
+                                  friend_user)
             # select friend's design
             design = db.execute("SELECT * FROM design WHERE user_id = (SELECT user_id FROM users WHERE username = ?)", friend_user)
             return render_template("friend-get.html", segments=segments, design=design[0], len=len)
@@ -415,7 +422,6 @@ def my_friends():
             friends = db.execute("SELECT friend_username FROM friends WHERE user_id = ?", user_id)
             return render_template("my-friends.html", friends=friends)
             
-
 
 @app.route("/edit-design", methods=["GET", "POST"])
 @login_required
@@ -437,6 +443,6 @@ def edit_design():
             return redirect(request.url)
         # update design table
         db.execute("UPDATE design SET background_color = ?, header_font = ?, header_size = ?, paragraph_font = ?, paragraph_size = ? WHERE user_id = ?",
-                    background_color, header_font, header_size, paragraph_font, paragraph_size, user_id)
+                   background_color, header_font, header_size, paragraph_font, paragraph_size, user_id)
         flash('Design updated!')
         return redirect("/")
